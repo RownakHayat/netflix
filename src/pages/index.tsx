@@ -6,6 +6,7 @@ import Banner from '@/components/Banner/Banner'
 import requests from '../../utils/requests'
 import { Movie } from '../../typeinf'
 import Row from '@/components/Row/Row'
+// import Scroll from '@/components/Scrool/Scroll'
 
 const inter = Inter({ subsets: ['latin'] })
 interface Props {
@@ -36,9 +37,10 @@ const Home = ({
    <div className="relative h-screen bg-gradient-to-b from-gray-9/10
    to-[#010511] lg:h-[140vh]">
      <Head>
-        <title>Home - Netflix</title>
+        <title>Netflix</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+  
       <Header/>
     <main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
       <Banner netflixOriginals={netflixOriginals}/>
@@ -53,8 +55,9 @@ const Home = ({
       <Row title="Romance Movies" movies={romanceMovies} />
       <Row title="Documentaries" movies={documentaries} />
       </section>
+      
     </main>
-     
+    
    </div>
   )
 }
@@ -69,7 +72,7 @@ export const getServerSideProps = async () =>{
     horrorMovies,
     romanceMovies,
     documentaries,
-  ] = await Promise.all([
+  ]:any = await Promise.all([
     fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
     fetch(requests.fetchTrending).then((res) => res.json()),
     fetch(requests.fetchTopRated).then((res) => res.json()),
